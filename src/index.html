@@ -21,12 +21,12 @@
 
     <div class="search-cont main-cont">
       <img class="icon search-icon" src="/search.png" alt="Search icon">
-      <input class="search-bar" type="text" placeholder="Find your film">
-      <button class="search-btn">Search</button>
+      <input class="search-bar" id="search-input" type="text" placeholder="Find your film">
+      <button class="search-btn" id="search-btn">Search</button>
     </div>
   </header>
 
-  <main class="index-main main-cont">
+  <main class="index-main main-cont" id="index-main">
     <div class="main-placeholder">
       <img class="placeholder-img" src="/movie-placeholder.png" alt="Movie placeholder icon">
       <p class="placeholder-p">Start exploring</p>
@@ -63,8 +63,65 @@
         </div>
       </div>
     </article>
-    <hr> -->
+    <hr>
 
+    <article class="movie-article">
+      <img class="movie-poster" src="/test-movie.png" alt="Blade Runner movie poster">
+      <div class="movie-body">
+        <div class="movie-header">
+          <h2 class="movie-h2">Blade Runner</h2>
+          <div class="movie-rating">
+            <img src="/rating-star.png" alt="Rating star">
+            <p class="movie-p">8.1</p>
+          </div>
+        </div>
+        <div class="movie-specs">
+          <p class="movie-p">116 min</p>
+          <p class="movie-p">Drama, Mystery, Sci-fi</p>
+          <div class="movie-add-remove">
+            <button class="add-remove-cont">
+              <img class="add-remove-btn movie-add-remove-btn" src="/add.png" alt="Add movie">
+            </button>
+            <p class="movie-p">Watchlist</p>
+          </div>
+        </div>
+        <div class="movie-desc">
+          <p class="movie-desc-p">A blade runner must pursue and terminate four replicants who stole a ship in space,
+            and have returned to
+            Earth to find their creator.</p>
+        </div>
+      </div>
+    </article>
+    <hr>
+
+    <article class="movie-article">
+      <img class="movie-poster" src="/test-movie.png" alt="Blade Runner movie poster">
+      <div class="movie-body">
+        <div class="movie-header">
+          <h2 class="movie-h2">Blade Runner</h2>
+          <div class="movie-rating">
+            <img src="/rating-star.png" alt="Rating star">
+            <p class="movie-p">8.1</p>
+          </div>
+        </div>
+        <div class="movie-specs">
+          <p class="movie-p">116 min</p>
+          <p class="movie-p">Drama, Mystery, Sci-fi</p>
+          <div class="movie-add-remove">
+            <button class="add-remove-cont">
+              <img class="add-remove-btn movie-add-remove-btn" src="/add.png" alt="Add movie">
+            </button>
+            <p class="movie-p">Watchlist</p>
+          </div>
+        </div>
+        <div class="movie-desc">
+          <p class="movie-desc-p">A blade runner must pursue and terminate four replicants who stole a ship in space,
+            and have returned to
+            Earth to find their creator.</p>
+        </div>
+      </div>
+    </article>
+    <hr> -->
   </main>
 
   <script type="module" src="./index.js"></script>
