@@ -4,6 +4,14 @@ const searchInput = document.querySelector("#search-input")
 
 // Event Listeners
 searchBtn.addEventListener("click", getSearchResults)
+indexMainEl.addEventListener("click", handleIndexMainClick)
+
+function handleIndexMainClick(e) {
+  const movieID = e.target.closest(".movie-article") ? e.target.closest(".movie-article").id : null
+  if (movieID) {
+    console.log(movieID)
+  }
+}
 
 // Functions
 function getSearchResults() {
@@ -33,21 +41,22 @@ function renderMoviesHtml(movieTitlesArr) {
       .then(data => {
         const {
           Title, 
-          imdbRating: Rating, 
+          imdbRating,
+          imdbID,
           Runtime, 
           Genre,
           Plot,
           Poster
         } = data
 
-        indexMainEl.innerHTML += getMovieHtml(Title, Rating, Runtime, Genre, Plot, Poster)
+        indexMainEl.innerHTML += getMovieHtml(Title, imdbRating, imdbID, Runtime, Genre, Plot, Poster)
       })
   })
 }
 
-function getMovieHtml(title, rating, runtime, genre, plot, poster) {
+function getMovieHtml(title, rating, id, runtime, genre, plot, poster) {
   return `
-    <article class="movie-article">
+    <article class="movie-article" id="${id}">
       <img class="movie-poster" src="${poster}" alt="${title} movie poster">
       <div class="movie-body">
         <div class="movie-header">
