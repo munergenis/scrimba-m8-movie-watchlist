@@ -28,6 +28,7 @@ body {
 
 /* Header Layout */
 header {
+  flex-shrink: 0;
   position: relative;
   margin: 0 auto;
   width: 550px;
@@ -93,14 +94,24 @@ button.search-btn {
   cursor: pointer;
 }
 
-/* Main Layout */
+/* Index Main Empty Layout */
 main.index-main {
   flex-grow: 1;
+  padding-block: 3em;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.25em;
+}
+
+div.main-placeholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 8px;
+  align-items: center;
+  gap: 1.5em;
+  text-align: center;
 }
 
 img.placeholder-img {
@@ -113,13 +124,87 @@ p.placeholder-p {
   font-weight: 700;
 }
 
-/* Watchlist Main Layout */
+/* Index Main Articles Layout */
+article.movie-article {
+  display: flex;
+  align-items: center;
+  gap: 1.25em;
+  cursor: pointer;
+}
+
+img.movie-poster {
+  height: 147px;
+  width: 99px;
+}
+
+div.movie-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+div.movie-header,
+div.movie-rating,
+div.movie-specs,
+div.movie-add-remove {
+  display: flex;
+  align-items: baseline;
+}
+
+div.movie-header,
+div.movie-specs {
+  gap: 1em;
+}
+
+div.movie-rating {
+  gap: 0.25em;
+}
+
+button.add-remove-cont {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+img.movie-add-remove-btn {
+  margin-bottom: -3px;
+}
+
+div.movie-add-remove {
+  gap: 0.5em;
+}
+
+h2.movie-h2 {
+  font-size: 1.125rem;
+  font-weight: 300;
+}
+
+p.movie-p {
+  font-size: 0.75rem;
+  font-weight: 300;
+}
+
+p.movie-desc-p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #a5a5a5;
+  font-weight: 300;
+}
+
+main > hr {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+/* Watchlist Main Empty Layout */
 main.watchlist-main {
   flex-grow: 1;
+  padding-block: 3em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 1.5em;
 }
 
