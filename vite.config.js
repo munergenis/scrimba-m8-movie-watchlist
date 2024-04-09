@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import path from "node:path";
+import { resolve } from "path";
 
 const isGitHubPages = true;
 const folderName = path.basename(process.cwd()) + "/";
@@ -19,6 +20,12 @@ export default defineConfig({
   },
   build: {
     outDir: "../dist",
-    assetsDir: "./"
+    assetsDir: "./",
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "src/index.html"),
+        watchlist: resolve(__dirname, "src/watchlist/watchlist.html")
+      }
+    }
   }
 });
