@@ -5,11 +5,54 @@ if (storedMoviesArr) {
   renderStoredMovies()
 }
 
+watchlistMainEl.addEventListener("click", handleWatchlistMainClick)
+
+function handleWatchlistMainClick(e) {
+  const movieID = e.target.closest(".movie-add-remove") && e.target.closest(".movie-add-remove").id
+  if (movieID) {
+    // Remove movie from array ✅
+    // If storedMoviesArr
+      // Store new array
+      // Render stored movies
+    // Else
+      // Clear localStorage Item "movies"
+      // Render empty hmtl
+
+    removeMovieFromArr(movieID)
+    if (storedMoviesArr.length > 0) {
+      storeNewArr()
+      renderStoredMovies()
+    } else {
+      localStorage.removeItem("movies")
+      renderEmptyPlaceholderHtml()
+    }
+    // console.log(movieID)
+    // console.log(storedMoviesArr)
+  }
+}
+
+function renderEmptyPlaceholderHtml() {
+  watchlistMainEl.innerHTML = `
+    <div class="main-placeholder">
+      <img class="placeholder-img" src="/movie-placeholder.png" alt="Movie placeholder icon">
+      <p class="placeholder-p">Start exploring</p>
+    </div>
+  `
+}
+
+function storeNewArr() {
+  localStorage.setItem("movies", JSON.stringify(storedMoviesArr))
+}
+
+function removeMovieFromArr(id) {
+  // Search movie from array and remove
+  const index = storedMoviesArr.findIndex(movie => movie.imdbID === id)
+  storedMoviesArr.splice(index, 1)
+}
+
 function renderStoredMovies() {
   let moviesHtml = ""
-  storedMoviesArr.forEach(movie => {
-    moviesHtml += getMovieHtml(movie)
-  })
+  storedMoviesArr.forEach(movie => moviesHtml += getMovieHtml(movie))
   watchlistMainEl.innerHTML = moviesHtml
 }
 

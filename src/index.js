@@ -7,9 +7,7 @@ searchBtn.addEventListener("click", getSearchResults)
 indexMainEl.addEventListener("click", handleIndexMainClick)
 
 function handleIndexMainClick(e) {
-  const movieID = e.target.closest(".movie-article") 
-    ? e.target.closest(".movie-article").id 
-    : null
+  const movieID = e.target.closest(".movie-article") && e.target.closest(".movie-article").id
 
   if (movieID) {
     const movieObjectPromise = getMovieObject(movieID)
