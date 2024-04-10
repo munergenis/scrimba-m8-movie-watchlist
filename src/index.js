@@ -31,7 +31,7 @@ function movieIsStored(id) {
 }
 
 async function getMovieObject(movieID) {
-  const resp = await fetch(`http://www.omdbapi.com/?apikey=9c38210&i=${movieID}`)
+  const resp = await fetch(`https://www.omdbapi.com/?apikey=9c38210&i=${movieID}`)
   const data = await resp.json()
   return data
 }
@@ -52,7 +52,7 @@ function pushMovieToLocalStorage(data) {
 
 function getSearchResults() {
   if (searchInput.value) {
-    fetch(`http://www.omdbapi.com/?apikey=9c38210&s=${searchInput.value}&type=movie`)
+    fetch(`https://www.omdbapi.com/?apikey=9c38210&s=${searchInput.value}&type=movie`)
       .then(resp => resp.json())
       .then(data => {
         if (data.Response === "True") {
@@ -72,7 +72,7 @@ function getSearchResults() {
 function renderMoviesHtml(movieTitlesArr) {
   indexMainEl.innerHTML = ""
   movieTitlesArr.forEach(movie => {
-    fetch(`http://www.omdbapi.com/?apikey=9c38210&t=${movie}`)
+    fetch(`https://www.omdbapi.com/?apikey=9c38210&t=${movie}`)
       .then(resp => resp.json())
       .then(data => {
         const {
