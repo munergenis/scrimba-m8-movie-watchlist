@@ -82,6 +82,22 @@ function renderMoviesHtml(movieTitlesArr) {
 }
 
 function getMovieHtml(title, rating, id, runtime, genre, plot, poster) {
+  let buttonHtml = ""
+  if (movieIsStored(id)) {
+    buttonHtml = `
+      <button class="add-remove-cont">
+        <img class="add-remove-btn movie-add-remove-btn" src="/added.svg" alt="Added movie">
+      </button>
+      <p class="movie-p">Added</p>
+    `
+  } else {
+    buttonHtml = `
+      <button class="add-remove-cont">
+        <img class="add-remove-btn movie-add-remove-btn" src="/add.png" alt="Add movie">
+      </button>
+      <p class="movie-p">Watchlist</p>
+    `
+  }
   return `
     <article class="movie-article" id="${id}">
       <img class="movie-poster" src="${poster}" alt="${title} movie poster">
@@ -97,10 +113,7 @@ function getMovieHtml(title, rating, id, runtime, genre, plot, poster) {
           <p class="movie-p">${runtime}</p>
           <p class="movie-p">${genre}</p>
           <div class="movie-add-remove">
-            <button class="add-remove-cont">
-              <img class="add-remove-btn movie-add-remove-btn" src="/add.png" alt="Add movie">
-            </button>
-            <p class="movie-p">Watchlist</p>
+            ${buttonHtml}
           </div>
         </div>
         <div class="movie-desc">
