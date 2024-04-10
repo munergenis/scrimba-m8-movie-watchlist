@@ -5,19 +5,13 @@ if (storedMoviesArr) {
   renderStoredMovies()
 }
 
+// Event Listeners
 watchlistMainEl.addEventListener("click", handleWatchlistMainClick)
 
+// Functions
 function handleWatchlistMainClick(e) {
   const movieID = e.target.closest(".movie-add-remove") && e.target.closest(".movie-add-remove").id
   if (movieID) {
-    // Remove movie from array ✅
-    // If storedMoviesArr
-      // Store new array
-      // Render stored movies
-    // Else
-      // Clear localStorage Item "movies"
-      // Render empty hmtl
-
     removeMovieFromArr(movieID)
     if (storedMoviesArr.length > 0) {
       storeNewArr()
@@ -26,8 +20,6 @@ function handleWatchlistMainClick(e) {
       localStorage.removeItem("movies")
       renderEmptyPlaceholderHtml()
     }
-    // console.log(movieID)
-    // console.log(storedMoviesArr)
   }
 }
 
@@ -45,7 +37,6 @@ function storeNewArr() {
 }
 
 function removeMovieFromArr(id) {
-  // Search movie from array and remove
   const index = storedMoviesArr.findIndex(movie => movie.imdbID === id)
   storedMoviesArr.splice(index, 1)
 }

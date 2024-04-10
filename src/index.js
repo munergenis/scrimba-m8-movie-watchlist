@@ -6,6 +6,7 @@ const searchInput = document.querySelector("#search-input")
 searchBtn.addEventListener("click", getSearchResults)
 indexMainEl.addEventListener("click", handleIndexMainClick)
 
+// Functions
 function handleIndexMainClick(e) {
   const movieID = e.target.closest(".movie-article") && e.target.closest(".movie-article").id
 
@@ -35,7 +36,6 @@ function pushMovieToLocalStorage(data) {
   localStorage.setItem("movies", JSON.stringify(savedMoviesArr))
 }
 
-// Functions
 function getSearchResults() {
   if (searchInput.value) {
     fetch(`http://www.omdbapi.com/?apikey=9c38210&s=${searchInput.value}&type=movie`)
