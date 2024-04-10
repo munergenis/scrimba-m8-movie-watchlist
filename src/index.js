@@ -10,10 +10,15 @@ indexMainEl.addEventListener("click", handleIndexMainClick)
 function handleIndexMainClick(e) {
   const movieID = e.target.closest(".movie-article") && e.target.closest(".movie-article").id
 
-  if (movieID) {
+  if (movieID && !(movieIsStored(movieID))) {
     const movieObjectPromise = getMovieObject(movieID)
-    movieObjectPromise.then(pushMovieToLocalStorage)
+    movieObjectPromise.then(pushMovieAndIdToLocalStorage)
   }
+}
+
+function movieIsStored(id) {
+  const moviesArr = JSON.parse(localStorage.getItem("movies")) || []
+  return moviesArr.filter(movie => movie.imdbID === id).length > 0
 }
 
 async function getMovieObject(movieID) {
@@ -22,7 +27,7 @@ async function getMovieObject(movieID) {
   return data
 }
 
-function pushMovieToLocalStorage(data) {
+function pushMovieAndIdToLocalStorage(data) {
   const savedMoviesArr = JSON.parse(localStorage.getItem("movies")) || []
   savedMoviesArr.unshift({
     title: data.Title, 
