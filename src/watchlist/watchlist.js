@@ -1,3 +1,7 @@
+import addUrl from '../assets/add.png'
+import removeUrl from '../assets/remove.png'
+import ratingStarUrl from '../assets/rating-star.png'
+
 const watchlistMainEl = document.querySelector("#watchlist-main")
 const storedMoviesArr = JSON.parse(localStorage.getItem("movies"))
 const searchBtn = document.querySelector("#search-btn")
@@ -60,8 +64,11 @@ function handleWatchlistMainClick(e) {
 function renderEmptyPlaceholderHtml() {
   watchlistMainEl.innerHTML = `
     <div class="main-placeholder">
-      <img class="placeholder-img" src="/movie-placeholder.png" alt="Movie placeholder icon">
-      <p class="placeholder-p">Start exploring</p>
+      <p class="placeholder-ligth-p">Your watchlist is looking a little empty...</p>
+      <a class="placeholder-link" href="../index.html">
+        <img class="add-remove-btn" src="${addUrl}" alt="Add movie icon">
+        <p>Let's add some movies!</p>
+      </a>
     </div>
   `
 }
@@ -102,7 +109,7 @@ function getMovieHtml(movie) {
         <div class="movie-header">
           <h2 class="movie-h2">${title}</h2>
           <div class="movie-rating">
-            <img src="/rating-star.png" alt="Rating star">
+            <img src="${ratingStarUrl}" alt="Rating star">
             <p class="movie-p">${rating}</p>
           </div>
         </div>
@@ -111,7 +118,7 @@ function getMovieHtml(movie) {
           <p class="movie-p">${genre}</p>
           <div class="movie-add-remove"  id="${id}">
             <button class="add-remove-cont">
-              <img class="add-remove-btn movie-add-remove-btn" src="/remove.png" alt="Remove movie">
+              <img class="add-remove-btn movie-add-remove-btn" src="${removeUrl}" alt="Remove movie">
             </button>
             <p class="movie-p">Remove</p>
           </div>

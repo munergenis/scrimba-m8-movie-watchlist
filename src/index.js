@@ -1,3 +1,8 @@
+import addedUrl from './assets/added.svg'
+import addUrl from './assets/add.png'
+import ratingStarUrl from './assets/rating-star.png'
+import moviePlaceholderUrl from './assets/movie-placeholder.png'
+
 const indexMainEl = document.querySelector("#index-main")
 const searchBtn = document.querySelector("#search-btn")
 const searchInput = document.querySelector("#search-input")
@@ -15,7 +20,7 @@ function handleIndexMainClick(e) {
     movieObjectPromise.then(pushMovieToLocalStorage)
     const addRemoveImgEl = e.target.closest(".movie-article").querySelector(".movie-add-remove-btn")
     const addedEl = e.target.closest(".movie-article").querySelector("#added")
-    addRemoveImgEl.setAttribute("src", "/added.svg")
+    addRemoveImgEl.setAttribute("src", addedUrl)
     addedEl.textContent = "Added"
   }
 }
@@ -90,14 +95,14 @@ function getMovieHtml(title, rating, id, runtime, genre, plot, poster) {
   if (movieIsStored(id)) {
     buttonHtml = `
       <button class="add-remove-cont">
-        <img class="add-remove-btn movie-add-remove-btn" src="/added.svg" alt="Added movie">
+        <img class="add-remove-btn movie-add-remove-btn" src="${addedUrl}" alt="Added movie">
       </button>
       <p class="movie-p" id="added">Added</p>
     `
   } else {
     buttonHtml = `
       <button class="add-remove-cont">
-        <img class="add-remove-btn movie-add-remove-btn" src="/add.png" alt="Add movie">
+        <img class="add-remove-btn movie-add-remove-btn" src="${addUrl}" alt="Add movie">
       </button>
       <p class="movie-p" id="added">Watchlist</p>
     `
@@ -109,7 +114,7 @@ function getMovieHtml(title, rating, id, runtime, genre, plot, poster) {
         <div class="movie-header">
           <h2 class="movie-h2">${title}</h2>
           <div class="movie-rating">
-            <img src="/rating-star.png" alt="Rating star">
+            <img src="${ratingStarUrl}" alt="Rating star">
             <p class="movie-p">${rating}</p>
           </div>
         </div>
@@ -140,7 +145,7 @@ function getNotFoundHtml() {
 function getEmptyPlaceholderHtml() {
   return `
     <div class="main-placeholder">
-      <img class="placeholder-img" src="/movie-placeholder.png" alt="Movie placeholder icon">
+      <img class="placeholder-img" src="${moviePlaceholderUrl}" alt="Movie placeholder icon">
       <p class="placeholder-p">Start exploring</p>
     </div>
   `
