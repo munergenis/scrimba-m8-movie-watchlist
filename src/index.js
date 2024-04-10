@@ -12,7 +12,11 @@ function handleIndexMainClick(e) {
 
   if (movieID && !(movieIsStored(movieID))) {
     const movieObjectPromise = getMovieObject(movieID)
-    movieObjectPromise.then(pushMovieAndIdToLocalStorage)
+    movieObjectPromise.then(pushMovieToLocalStorage)
+    const addRemoveImgEl = e.target.closest(".movie-article").querySelector(".movie-add-remove-btn")
+    const addedEl = e.target.closest(".movie-article").querySelector("#added")
+    addRemoveImgEl.setAttribute("src", "/added.svg")
+    addedEl.textContent = "Added"
   }
 }
 
@@ -27,7 +31,7 @@ async function getMovieObject(movieID) {
   return data
 }
 
-function pushMovieAndIdToLocalStorage(data) {
+function pushMovieToLocalStorage(data) {
   const savedMoviesArr = JSON.parse(localStorage.getItem("movies")) || []
   savedMoviesArr.unshift({
     title: data.Title, 
@@ -88,14 +92,14 @@ function getMovieHtml(title, rating, id, runtime, genre, plot, poster) {
       <button class="add-remove-cont">
         <img class="add-remove-btn movie-add-remove-btn" src="/added.svg" alt="Added movie">
       </button>
-      <p class="movie-p">Added</p>
+      <p class="movie-p" id="added">Added</p>
     `
   } else {
     buttonHtml = `
       <button class="add-remove-cont">
         <img class="add-remove-btn movie-add-remove-btn" src="/add.png" alt="Add movie">
       </button>
-      <p class="movie-p">Watchlist</p>
+      <p class="movie-p" id="added">Watchlist</p>
     `
   }
   return `
