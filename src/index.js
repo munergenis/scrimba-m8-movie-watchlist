@@ -7,10 +7,34 @@ searchBtn.addEventListener("click", getSearchResults)
 indexMainEl.addEventListener("click", handleIndexMainClick)
 
 function handleIndexMainClick(e) {
-  const movieID = e.target.closest(".movie-article") ? e.target.closest(".movie-article").id : null
+  const movieID = e.target.closest(".movie-article") 
+    ? e.target.closest(".movie-article").id 
+    : null
+
   if (movieID) {
-    console.log(movieID)
+    const movieObjectPromise = getMovieObject(movieID)
+    movieObjectPromise.then(pushMovieToLocalStorage)
   }
+}
+
+async function getMovieObject(movieID) {
+  const resp = await fetch(`http://www.omdbapi.com/?apikey=9c38210&i=${movieID}`)
+  const data = await resp.json()
+  return data
+}
+
+function pushMovieToLocalStorage(data) {
+  const savedMoviesArr = JSON.parse(localStorage.getItem("movies")) || []
+  savedMoviesArr.unshift({
+    title: data.Title, 
+    imdbRating: data.imdbRating,
+    imdbID: data.imdbID,
+    runtime: data.Runtime, 
+    genre: data.Genre,
+    plot: data.Plot,
+    poster: data.Poster,
+  })
+  localStorage.setItem("movies", JSON.stringify(savedMoviesArr))
 }
 
 // Functions
