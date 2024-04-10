@@ -1,5 +1,7 @@
 const watchlistMainEl = document.querySelector("#watchlist-main")
 const storedMoviesArr = JSON.parse(localStorage.getItem("movies"))
+const searchBtn = document.querySelector("#search-btn")
+const searchInput = document.querySelector("#search-input")
 
 if (storedMoviesArr) {
   renderStoredMovies()
@@ -7,8 +9,40 @@ if (storedMoviesArr) {
 
 // Event Listeners
 watchlistMainEl.addEventListener("click", handleWatchlistMainClick)
+searchBtn.addEventListener("click", handleSearchClick)
 
 // Functions
+function handleSearchClick() {
+  const searchStr = searchInput.value && searchInput.value.toLowerCase()
+  if (searchStr) {
+    const filteredMoviesArray = getFilteredArr(searchStr)
+    if (filteredMoviesArray.length > 0) {
+      renderFilteredMovies(filteredMoviesArray)
+      searchInput.value = ""
+    } else {
+      renderNotFoundHtml()
+    }
+  } else {
+    renderStoredMovies()
+  }
+}
+
+function renderNotFoundHtml() {
+  watchlistMainEl.innerHTML = `
+    <div class="main-placeholder">
+      <p class="placeholder-ligth-p">Unable to find what you're looking for. Please try another search.</p>
+    </div>
+  `
+}
+
+function getFilteredArr(str) {
+  return storedMoviesArr.filter(movie => movie.title.toLowerCase().includes(str))
+}
+
+function renderFilteredMovies(arr) {
+  renderMovies(arr)
+}
+
 function handleWatchlistMainClick(e) {
   const movieID = e.target.closest(".movie-add-remove") && e.target.closest(".movie-add-remove").id
   if (movieID) {
@@ -42,8 +76,12 @@ function removeMovieFromArr(id) {
 }
 
 function renderStoredMovies() {
+  renderMovies(storedMoviesArr)
+}
+
+function renderMovies(arr) {
   let moviesHtml = ""
-  storedMoviesArr.forEach(movie => moviesHtml += getMovieHtml(movie))
+  arr.forEach(movie => moviesHtml += getMovieHtml(movie))
   watchlistMainEl.innerHTML = moviesHtml
 }
 
